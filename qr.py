@@ -1,7 +1,7 @@
 import qrcode
 from PIL import Image, ImageDraw, ImageFont
 
-def generate_vcard_qr(name, phone, email=None, organization=None, title=None, address=None, website=None, image_path=None, filename="contact_qr.png"):
+def generate_vcard_qr(name, phone, email=None, organization=None, title=None, address=None, website=None, image_path=None, qr_filename="contact_qr.png", card_filename="contact_card.png"):
     # Split the name into first and last name
     name_parts = name.split()
     first_name = name_parts[0]
@@ -34,8 +34,8 @@ END:VCARD
 
     # Generate QR code image
     qr_img = qr.make_image(fill='black', back_color='white')
-    qr_img.save(filename)
-    print(f"QR code saved as {filename}")
+    qr_img.save(qr_filename)
+    print(f"QR code saved as {qr_filename}")
 
     # Generate contact card
     card_img = Image.new('RGB', (600, 400), color='#f0f0f0')
@@ -80,13 +80,12 @@ END:VCARD
     card_img.paste(qr_img, (430, 250))
 
     # Save the contact card
-    card_filename = "contact_card.png"
     card_img.save(card_filename)
     print(f"Contact card saved as {card_filename}")
 
 # Example usage
 generate_vcard_qr(
-    name="John Doe",
+    name="John Doee",
     phone="+123456789",
     email="johndoe@example.com",
     organization="Example Inc.",

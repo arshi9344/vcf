@@ -16,6 +16,10 @@ def index():
         website = request.form.get('website')
         image = request.files.get('image')
 
+        # Ensure website URLs are properly formatted
+        if website and not website.startswith(('http://', 'https://')):
+            website = 'http://' + website
+
         image_path = None
         if image:
             image_path = os.path.join('static/images', image.filename)
